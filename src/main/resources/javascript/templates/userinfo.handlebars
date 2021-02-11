@@ -1,0 +1,43 @@
+<div class="userGreeting">
+    <span id="userGreeting">Good afternoon, {{firstName}}</span>
+</div>
+<div class="userTable">
+    <div class="userPicCol">
+        {{#if profilePictureUrl}}
+            <img src='{{profilePictureUrl}}' id="userPic" class='profile-picture user-avatar img-fluid'/>
+        {{else}}
+            <img src='/modules/jexperience/images/default-profile.jpg' id="userPic"
+                 class='profile-picture user-avatar img-fluid'/>
+        {{/if}}
+        <div style="font-size:14px"><a data-toggle="modal" data-target="#myModal" href="">Personalize</a></div>
+    </div>
+    <div class="userCol">
+        <div class="profileTable">
+            <div class="profileRow">
+                <div class="profileCol">
+                    <span id="firstName">{{firstName}}</span>&nbsp;<span id="lastName">{{lastName}}</span>
+                </div>
+            </div>
+            <div class="profileRow">
+                <div class="profileCol">
+                    <span id="userCompany">{{company}}</span>
+                </div>
+            </div>
+            <div class="profileRow">
+                <div class="profileCol">
+                    <span id="jobTitle">{{jobTitle}}</span>
+                </div>
+            </div>
+            <div class="profileRow">
+                <div class="profileCol">
+                    <a id="userEmail" href="mailto:{{email}}">{{email}}</a>
+                </div>
+            </div>
+            <div class="profileRow">
+                <div class="profileCol">
+                    <span id="userSince">Customer since {{formatDate firstVisit "short"}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

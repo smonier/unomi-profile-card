@@ -1,0 +1,33 @@
+{
+    "itemId": "portalInterests",
+    "itemType": "propertyType",
+    "target": "profiles",
+    "defaultValue": null,
+    "dateRanges": [ ],
+    "numericRanges": [ ],
+    "ipRanges": [ ],
+    "automaticMappingsFrom": [ ],
+    "rank": null,
+    "mergeStrategy": null,
+    "multivalued": true,
+    "protected": null,
+    "metadata": {
+      "id": "portalInterests",
+      "name": "Portal Interests",
+      "description": null,
+      "scope": null,
+      "tags": [ ],
+      "systemTags": [
+        "positionInCard.0"
+      ,
+        "cardDataTag/_ktqfd3hmh/1/Profile Preferences"
+      ,
+        "hasCardDataTag"
+      ],
+      "enabled": true,
+      "missingPlugins": false,
+      "hidden": false,
+      "readOnly": false
+    },
+    "type": "string"
+}

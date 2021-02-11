@@ -1,0 +1,10 @@
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<upcnt = 'http://www.jahia.org/upc/nt/1.0'>
+<upcmix = 'http://www.jahia.org/upc/mix/1.0'>
+
+[upcmix:unomiProfileCard] > jmix:droppableContent, jmix:editorialContent mixin
+[upcnt:unomiProfile]  > jnt:content, mix:title, upcmix:unomiProfileCard
+ - jExpProperty (string,choicelist[jExpProfilePropertiesInitializer='{"cardName":"*"}',resourceBundle]) indexed=no multiple
+
+[upcnt:profilePortalCard] > jnt:content, mix:title, upcmix:unomiProfileCard
