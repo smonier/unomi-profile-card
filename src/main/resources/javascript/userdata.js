@@ -94,7 +94,9 @@ updateProfileProperties = function () {
 
             if (result.status === 'profile-updated') {
                 console.info('[UNOMI-PROFILE-CARD] Profile properties successfully updated');
-                location.reload();
+
+                setTimeout(location.reload.bind(location), 300);
+
 
             }  else {
                 console.error('[UNOMI-PROFILE-CARD] Could not update profile properties');
