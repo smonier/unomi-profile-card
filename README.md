@@ -4,7 +4,7 @@
 
 Display a Profile card with information coming from the Customer Data Platform UNOMI (http://unomi.apache.org)
 
-The end-user can also select interest based on selected catagories, those preferences will stores as profile properties (PortalInterest) in Unomi.
+The end-user can also select interest based on selected catagories, those preferences will be stored as profile properties (PortalInterest) in Unomi.
 
 ## Installation
 
