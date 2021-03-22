@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
    <modules jcr:primaryType="jnt:modules">
-      <unomi-prolile-card j:dependencies="default jexperience"
+      <unomi-profile-card j:dependencies="default jexperience"
                           j:modulePriority="0"
                           j:moduleType="module"
-                          j:title="Unomi Prolile Card"
-                          jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                          j:title="Unomi Profile Card"
                           jcr:primaryType="jnt:module">
          <portlets jcr:primaryType="jnt:portletFolder"/>
          <files jcr:primaryType="jnt:folder"/>
@@ -14,6 +13,6 @@
             <files jcr:primaryType="jnt:folder"/>
             <contents jcr:primaryType="jnt:contentFolder"/>
          </templates>
-      </unomi-prolile-card>
+      </unomi-profile-card>
    </modules>
 </content>

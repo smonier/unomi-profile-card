@@ -68,13 +68,13 @@ function contains(array, value) {
  * This function update profile properties.
  *
  */
-updateProfileProperties = function () {
+updateProfileProperties = function (site) {
 
-    var propertyValue = $('#profilePrefsForm [type="checkbox"]:checked').map(function () {
+    var propertyValue = $('#'+site+'-profilePrefsForm [type="checkbox"]:checked').map(function () {
         return this.value;
     }).get();
     var pathURL = document.getElementById("pathURL").value;
-    var propertyKey = "portalInterests";
+    var propertyKey = "leadPreferences";
     console.info('[UNOMI-PROFILE-CARD] Call event update profile properties: '+pathURL+' - '+propertyValue);
     wem.ajax({
         url: encodeURI(pathURL + '.updatePortalProfile.do'),

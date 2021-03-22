@@ -45,19 +45,19 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.0.1.0</version>
+        <version>8.0.2.0</version>
     </parent>
     <groupId>org.se.modules</groupId>
-    <artifactId>unomi-prolile-card</artifactId>
-    <name>Unomi Prolile Card</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>unomi-profile-card</artifactId>
+    <name>Unomi Profile Card</name>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (Unomi Prolile Card) for running on a Jahia server.</description>
 
@@ -66,14 +66,14 @@
         <developerConnection>scm:dummy:uri</developerConnection>
     </scm>
     <properties>
-        <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
         <jahia-depends>default,jexperience</jahia-depends>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.jahia.modules</groupId>
             <artifactId>jexperience</artifactId>
-            <version>1.12.2</version>
+            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -95,9 +95,33 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <dependency>
+            <groupId>org.eclipse.gemini.blueprint</groupId>
+            <artifactId>gemini-blueprint-core</artifactId>
+            <version>1.0.2.RELEASE</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.osgi</groupId>
+                    <artifactId>org.osgi.core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
     <repositories>
+        <repository>
+            <id>jahia-enterprise</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/enterprise</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
         <repository>
             <id>jahia-public</id>
             <name>Jahia Public Repository</name>
@@ -122,6 +146,44 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>marketing-factory-releases</id>
+            <name>Marketing Factory Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/repositories/marketing-factory-releases</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>marketing-factory-snapshots</id>
+            <name>Marketing Factory Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/repositories/marketing-factory-snapshots</url>
+        </repository>
+        <repository>
+            <id>marketing-factory</id>
+            <name>Marketing Factory Group</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/marketing-factory-group/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
 
     <build>
@@ -132,9 +194,13 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <_dsannotations>org.jahia.se.modules.unomiprofile.actions.*,org.jahia.se.modules.unomiprofile.initializers.*,
-                            org.jahia.se.modules.unomiprofile.rules.*</_dsannotations>
-                        <Export-Package>org.jahia.se.modules.unomiprofile.rules</Export-Package>
+                        <Require-Capability>
+                            osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"
+                        </Require-Capability>
+                        <_dsannotations>
+                            org.jahia.se.modules.unomiprofile.actions.*,
+                            *
+                        </_dsannotations>
                     </instructions>
                 </configuration>
             </plugin>

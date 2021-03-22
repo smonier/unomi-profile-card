@@ -8,3 +8,4 @@
  - jExpProperty (string,choicelist[jExpProfilePropertiesInitializer='{"cardName":"*"}',resourceBundle]) indexed=no multiple
 
 [upcnt:profilePortalCard] > jnt:content, mix:title, upcmix:unomiProfileCard
+

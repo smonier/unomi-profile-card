@@ -17,6 +17,8 @@
 <template:addResources type="javascript" resources="templates/userinfo.precompiled.js"/>
 <template:addResources type="javascript" resources="userdata.js"/>
 <template:addResources type="css" resources="userdata.css"/>
+<c:set var="siteKey" value="${renderContext.site.siteKey}"/>
+<c:set var="nodeUUID" value="${fn:replace(currentNode.identifier,'-','')}"/>
 
 <jcr:nodeProperty node="${currentNode}" name="j:defaultCategory" var="categories"/>
 <c:if test="${renderContext.loggedIn}">
@@ -28,7 +30,7 @@
 
 
     <script type="text/javascript">
-        let portalPrefs = [];
+        let portalPrefs${nodeUUID} = [];
         $(function () {
             var DateFormats = {
                 short: "MMMM DD - YYYY",
@@ -47,13 +49,13 @@
             });
 
             $(".profile-loaded-subscriber").bind("profileLoaded", (e, data) => {
-                portalPrefs = data.profileProperties.portalInterests;
+                portalPrefs${nodeUUID} = data.profileProperties.leadPreferences;
                 var target = $(".profile-loaded-subscriber > .profile-data");
                 var template = Handlebars.templates.userinfo;
                 target.html(template(data.profileProperties));
 
-                if (portalPrefs != null) {
-                    portalPrefs.forEach(setChecked);
+                if (portalPrefs${nodeUUID} != null) {
+                    portalPrefs${nodeUUID}.forEach(setChecked);
 
                     function setChecked(item, index) {
                         document.getElementById(item).checked = true;
@@ -70,26 +72,6 @@
     <div class="module_body">
         <div class="ml-auto profile-loaded-subscriber">
             <div class="container profile-data">
-                    <%--        <div class="col-4">--%>
-                    <%--            <img src="/modules/jexperience/images/default-profile.jpg" class="user-avatar img-fluid">--%>
-                    <%--        </div>--%>
-                    <%--        <div class="col-8 text-muted">--%>
-                    <%--            <div class="row">--%>
-                    <%--                <div class="col text-uppercase">--%>
-                    <%--                    Alan Richards--%>
-                    <%--                </div>--%>
-                    <%--            </div>--%>
-                    <%--            <div class="row">--%>
-                    <%--                <div class="col">--%>
-                    <%--                    Pension ID: MEM12345678--%>
-                    <%--                </div>--%>
-                    <%--            </div>--%>
-                    <%--            <div class="row">--%>
-                    <%--                <div class="col">--%>
-                    <%--                    Last logged in: Today--%>
-                    <%--                </div>--%>
-                    <%--            </div>--%>
-                    <%--        </div>--%>
             </div>
         </div>
     </div>
@@ -100,13 +82,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Select your interests</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Select your preferences</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form onsubmit="return false;" method="post"
-                      id="profilePrefsForm">
+                <form onsubmit="return false;" method="post" id="${siteKey}-profilePrefsForm" name="${siteKey}-profilePrefsForm">
                     <input id="pathURL"
                            value="<c:url value='${url.base}${currentNode.path}'/>" type="hidden"/>
                     <input name="jcrRedirectTo"
@@ -124,7 +105,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button onclick="javascript:updateProfileProperties();" type="submit" class="btn btn-primary">Save changes</button>
+                        <button onclick="javascript:updateProfileProperties('${siteKey}');" type="submit" class="btn btn-primary">
+                            Save changes
+                        </button>
                     </div>
                 </form>
             </div>
